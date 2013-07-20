@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "contributors": ["Richard Astbury <richard.astbury@gmail.com> (https://github.com/richorama)"],
   "keywords": ["leveldb", "levelup", "database", "storage", "latitude", "longitude", "coordinates","geo","geospatial", "spatial", "db", "document", "index"],
-  "main": "level-geospatial.js",
+  "main": "lib/level-geospatial.js",
   "dependencies": {
   	"level": "*"
   },
