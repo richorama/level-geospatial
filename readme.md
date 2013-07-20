@@ -32,17 +32,17 @@ geo.put(52.081959, 1.415904, 'Location1', 'My value', function(err){
 
 You can retrieve a value back like this:
 ```js
-// this is the fast way of getting the record
+// this is the fast way of getting the value
 geo.get(52.081959, 1.415904, 'Location1',function(err,data){
 	console.log(data);
 });
 
-// this is the slower/convenient way of getting the record
+// this is the slower/convenient way of getting the value
 geo.getByKey('Location1', function(err,data){
 	console.log(data);
 });
 
-// the data looks like this:
+// the data returned looks like this:
 { quadKey: '1222222212112112222210',
   lat: 52.081959,
   lon: 1.415904,
@@ -50,14 +50,14 @@ geo.getByKey('Location1', function(err,data){
   value: 'My value' }
 ```
 
-You can also search within a radius (in meters) of a given point:
+You can search within a radius (in meters) of a given point:
 ```js
 // lat, lon, radius in meters
 geo.search(52.081959, 1.415904, 15000).on('data', function(data){
 	console.log(data)
 });
 
-// the data looks like this:
+// the data returned looks like this:
 { quadKey: '1222222212112112222210',
   lat: 52.081959,
   lon: 1.415904,
@@ -67,6 +67,20 @@ geo.search(52.081959, 1.415904, 15000).on('data', function(data){
 ```
 
 Please note, the results are not returned in any meaningful order.
+
+You can update/delete like this:
+
+```js
+// to update the value/location:
+geo.put(53.1, 2.2, "Location1", "NEW VALUE", function(err){
+	if (err) console.log(err);
+});
+
+// to delete
+geo.del("Location1", function(err){
+	if (err) console.log(err);
+});
+```
 
 # How does it work?
 
