@@ -1,0 +1,16 @@
+{
+  "name": "level-geospatial",
+  "description": "Geospatial indexing for leveldb ",
+  "version": "0.0.1",
+  "contributors": ["Richard Astbury <richard.astbury@gmail.com> (https://github.com/richorama)"],
+  "keywords": ["leveldb", "levelup", "database", "storage", "latitude", "longitude", "coordinates","geo","geospatial", "spatial", "db", "document", "index"],
+  "main": "level-geospatial.js",
+  "dependencies": {
+  	"level": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richorama/level-geospatial.git"
+  },
+  "license": "MIT"
+}
