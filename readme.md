@@ -19,7 +19,6 @@ The module takes a leveldb database (or a sub-level):
 ```js
 var db = require('level')('path_to_your_database');
 var geo = require('level-geospatial')(db);
-
 ```
 
 You can then start adding key/values, along with latitude/longitude values. 
@@ -29,7 +28,6 @@ You can then start adding key/values, along with latitude/longitude values.
 geo.put(52.081959, 1.415904, 'Location1', 'My value', function(err){
 	if (err) console.log(err);
 });
-
 ```
 
 You can retrieve a value back like this:
@@ -50,7 +48,6 @@ geo.getByKey('Location1', function(err,data){
   lon: 1.415904,
   id: 'Location1',
   value: 'My value' }
-
 ```
 
 You can also search within a radius (in meters) of a given point:
@@ -66,7 +63,7 @@ geo.search(52.081959, 1.415904, 15000).on('data', function(data){
   lon: 1.415904,
   id: 'Location1',
   value: 'My value'
-  distance: 1232.232323 }
+  distance: 1232.232323 }  // this is the distance in meters from your search
 ```
 
 Please note, the results are not returned in any meaningful order.
