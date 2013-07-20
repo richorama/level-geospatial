@@ -8,15 +8,15 @@ Experimental - subject to change.
 
 # Install
 
-'''
+```
 $ npm install level-geospatial
-'''
+```
 
 # How to use
 
 The module takes a leveldb database (or a sub-level):
 
-```
+```js
 var db = require('level')('path_to_your_database');
 var geo = require('level-geospatial')(db);
 
@@ -24,7 +24,7 @@ var geo = require('level-geospatial')(db);
 
 You can then start adding key/values, along with latitude/longitude values. 
 
-```
+```js
 // lat, lon, key, value 
 geo.put(52.081959, 1.415904, 'Location1', 'My value', function(err){
 	if (err) console.log(err);
@@ -33,7 +33,7 @@ geo.put(52.081959, 1.415904, 'Location1', 'My value', function(err){
 ```
 
 You can retrieve a value back like this:
-```
+```js
 // this is the fast way of getting the record
 geo.get(52.081959, 1.415904, 'Location1',function(err,data){
 	console.log(data);
@@ -54,7 +54,7 @@ geo.getByKey('Location1', function(err,data){
 ```
 
 You can also search within a radius (in meters) of a given point:
-```
+```js
 // lat, lon, radius in meters
 geo.search(52.081959, 1.415904, 15000).on('data', function(data){
 	console.log(data)
