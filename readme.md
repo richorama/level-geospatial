@@ -1,6 +1,6 @@
 # level-geospatial
 
-Uses a quad tree to index latitude and longitude coordinates in a leveldb database.
+Uses a [quadtree](http://en.wikipedia.org/wiki/Quadtree) to index latitude and longitude coordinates in a [leveldb](https://npmjs.org/package/level) database.
 
 # Project Status
 
