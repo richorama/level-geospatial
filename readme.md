@@ -84,21 +84,22 @@ geo.del("Location1", function(err){
 
 # How does it work?
 
-The data is indexed using a quad tree. When you index a point, it's quad key is calculated to a depth of 22. 
+The data is indexed using a [quadtree](http://en.wikipedia.org/wiki/Quadtree). When you index a point, it's quadkey is calculated to a depth of 22. 
 
-When you search the database, the quad key is calculated for search location, the radius is used to calculate an appropriate depth in the quad tree to search to. 
-
-Potential matches within those quads are then tested using a simple distance calculation to work out if they are close enough to be included in the results.
-
-The quad key notation used is the same as Bing Maps. The quad keys can be inserted into this URL to retrieve a map tile for a given location:
+The quadkey is a string which stores where the point lives in the quadtree. The [quadkey notation](http://msdn.microsoft.com/en-us/library/bb259689.aspx) used is the same as Bing Maps. The quadkeys can be inserted into this URL to retrieve a map tile for a given location:
 
 ```
 http://ak.dynamic.t1.tiles.virtualearth.net/comp/ch/{QUADKEY}?mkt=en-gb&it=G,VE,BX,L,LA&shading=hill&og=18&n=z
 ```
 
+When you search the database, the quadkey is calculated for search location. The radius is then used to calculate an appropriate depth in the quadtree to search to. 
+
+Potential matches within those quads are then tested using a simple distance calculation to work out if they are close enough to be included in the results.
+
 # TODO
 
 Currently searches that span the international date line will not return all results.
+Batch operations are not supported.
 
 # License
 
