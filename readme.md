@@ -2,6 +2,8 @@
 
 Uses a [quadtree](http://en.wikipedia.org/wiki/Quadtree) to index latitude and longitude coordinates in a [leveldb](https://npmjs.org/package/level) database.
 
+[![NPM](https://nodei.co/npm/level-geospatial.png)](https://nodei.co/npm/level-geospatial/)
+
 # Project Status
 
 Experimental - subject to change.
