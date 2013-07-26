@@ -25,7 +25,7 @@ You can then start adding key/values, along with latitude/longitude values.
 
 ```js
 // lat, lon, key, value 
-geo.put(52.081959, 1.415904, 'Location1', 'My value', function(err){
+geo.put({lat:52.081959, lon:1.415904}, 'Location1', 'My value', function(err){
 	if (err) console.log(err);
 });
 ```
@@ -33,7 +33,7 @@ geo.put(52.081959, 1.415904, 'Location1', 'My value', function(err){
 You can retrieve a value back like this:
 ```js
 // this is the fast way of getting the value
-geo.get(52.081959, 1.415904, 'Location1',function(err,data){
+geo.get({lat:52.081959, lon:1.415904}, 'Location1',function(err,data){
 	console.log(data);
 });
 
@@ -44,8 +44,9 @@ geo.getByKey('Location1', function(err,data){
 
 // the data returned looks like this:
 { quadKey: '1222222212112112222210',
-  lat: 52.081959,
-  lon: 1.415904,
+  position: {
+    lat: 52.081959,    
+    lon: 1.415904 },
   id: 'Location1',
   value: 'My value' }
 ```
@@ -53,14 +54,15 @@ geo.getByKey('Location1', function(err,data){
 You can search within a radius (in meters) of a given point:
 ```js
 // lat, lon, radius in meters
-geo.search(52.081959, 1.415904, 15000).on('data', function(data){
+geo.search({lat:52.081959, lon:1.415904}, 15000).on('data', function(data){
 	console.log(data)
 });
 
 // the data returned looks like this:
 { quadKey: '1222222212112112222210',
-  lat: 52.081959,
-  lon: 1.415904,
+  position: {
+    lat: 52.081959,    
+    lon: 1.415904 },
   id: 'Location1',
   value: 'My value'
   distance: 1232.232323 }  // this is the distance in meters from your search
@@ -72,7 +74,7 @@ You can update/delete like this:
 
 ```js
 // to update the value/location:
-geo.put(53.1, 2.2, "Location1", "NEW VALUE", function(err){
+geo.put({lat:53.1, lon:2.2}, "Location1", "NEW VALUE", function(err){
 	if (err) console.log(err);
 });
 
