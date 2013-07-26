@@ -1,7 +1,7 @@
 {
   "name": "level-geospatial",
   "description": "Geospatial indexing for leveldb ",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "contributors": ["Richard Astbury <richard.astbury@gmail.com> (https://github.com/richorama)"],
   "keywords": ["leveldb", "levelup", "database", "storage", "latitude", "longitude", "coordinates","geo","geospatial", "spatial", "db", "document", "index"],
   "main": "lib/level-geospatial.js",
