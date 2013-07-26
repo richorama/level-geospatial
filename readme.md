@@ -64,7 +64,7 @@ geo.search({lat:52.081959, lon:1.415904}, 15000).on('data', function(data){
     lat: 52.081959,    
     lon: 1.415904 },
   id: 'Location1',
-  value: 'My value'
+  value: 'My value',
   distance: 1232.232323 }  // this is the distance in meters from your search
 ```
 
