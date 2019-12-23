@@ -86,6 +86,16 @@ describe('level-geospatial', () => {
         value: 'somevalue'
       })
     })
+
+    it('should get with a promise', done => {
+      const { geo, db } = getNewDb()
+      geo.get({ lat, lon }, 'somekey')
+      .catch(err => {
+        err.name.should.equal('NotFoundError')
+        done()
+      })
+      .catch(done)
+    })
   })
 
   describe('del', () => {
@@ -116,6 +126,16 @@ describe('level-geospatial', () => {
       } catch (err) {
         err.name.should.equal('NotFoundError')
       }
+    })
+
+    it('should fail with a promise', done => {
+      const { geo, db } = getNewDb()
+      geo.del('somekey')
+      .catch(err => {
+        err.name.should.equal('NotFoundError')
+        done()
+      })
+      .catch(done)
     })
   })
 
@@ -150,6 +170,16 @@ describe('level-geospatial', () => {
         id: 'somekey',
         value: 'somevalue'
       })
+    })
+
+    it('should fail with a promise', done => {
+      const { geo, db } = getNewDb()
+      geo.getByKey('somekey')
+      .catch(err => {
+        err.name.should.equal('NotFoundError')
+        done()
+      })
+      .catch(done)
     })
   })
 
