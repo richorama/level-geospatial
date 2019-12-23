@@ -33,6 +33,25 @@ describe('level-geospatial', () => {
         .catch(done)
       })
     })
+
+    it('should put with a promise', async () => {
+      const { geo, db } = getNewDb()
+      const putPromise = geo.put({ lat, lon }, 'somekey', 'somevalue')
+      putPromise.then.should.be.a.Function()
+      putPromise.catch.should.be.a.Function()
+      await putPromise
+      const results = await streamPromise(db.createReadStream())
+      results.should.deepEqual([
+        {
+          key: `geos~1202020102220223130002~${lat}~${lon}~somekey`,
+          value: 'somevalue'
+        },
+        {
+          key: 'keys~somekey',
+          value: `1202020102220223130002~${lat}~${lon}~somekey`
+        }
+      ])
+    })
   })
 
   describe('get', () => {
@@ -52,6 +71,21 @@ describe('level-geospatial', () => {
         })
       })
     })
+
+    it('should get with a promise', async () => {
+      const { geo, db } = getNewDb()
+      await geo.put({ lat, lon }, 'somekey', 'somevalue')
+      const getPromise = geo.get({ lat, lon }, 'somekey')
+      getPromise.then.should.be.a.Function()
+      getPromise.catch.should.be.a.Function()
+      const res = await getPromise
+      res.should.deepEqual({
+        quadKey: '1202020102220223130002',
+        position: { lat, lon },
+        id: 'somekey',
+        value: 'somevalue'
+      })
+    })
   })
 
   describe('del', () => {
@@ -67,6 +101,21 @@ describe('level-geospatial', () => {
           })
         })
       })
+    })
+
+    it('should del with a promise', async () => {
+      const { geo, db } = getNewDb()
+      await geo.put({ lat, lon }, 'somekey', 'somevalue')
+      const delPromise = geo.del('somekey')
+      delPromise.then.should.be.a.Function()
+      delPromise.catch.should.be.a.Function()
+      await delPromise
+      try {
+        const res = await geo.getByKey('somekey')
+        throw new Error('should not get here')
+      } catch (err) {
+        err.name.should.equal('NotFoundError')
+      }
     })
   })
 
@@ -85,6 +134,21 @@ describe('level-geospatial', () => {
           })
           done()
         })
+      })
+    })
+
+    it('should getByKey with a promise', async () => {
+      const { geo, db } = getNewDb()
+      await geo.put({ lat, lon }, 'somekey', 'somevalue')
+      const getByKeyPromise = geo.getByKey('somekey')
+      getByKeyPromise.then.should.be.a.Function()
+      getByKeyPromise.catch.should.be.a.Function()
+      const res = await getByKeyPromise
+      res.should.deepEqual({
+        quadKey: '1202020102220223130002',
+        position: { lat, lon },
+        id: 'somekey',
+        value: 'somevalue'
       })
     })
   })
